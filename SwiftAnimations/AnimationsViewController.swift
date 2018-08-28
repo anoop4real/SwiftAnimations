@@ -181,6 +181,15 @@ class AnimationsViewController: UIViewController {
         }, completion: nil)
 
     }
+    func fadeIn(imageView: UIImageView, toImage: UIImage) {
+        UIView.transition(with: imageView, duration: 1.0,
+                          options: [.transitionCrossDissolve],
+                          animations: {
+                            imageView.image = toImage
+        },
+                          completion: nil
+        )
+    }
 
     @IBAction func shake(_ sender: Any) {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
@@ -192,6 +201,10 @@ class AnimationsViewController: UIViewController {
     @IBAction func fade(_ sender: Any) {
 
         smiley.layer.add(self.fadeAnim(), forKey: "Fade")
+    }
+    @IBAction func crossDissolve(_ sender: Any) {
+        
+        fadeIn(imageView:smiley , toImage: UIImage(named: "angry")!)
     }
 
     @IBAction func move(_ sender: Any) {
@@ -237,8 +250,8 @@ class AnimationsViewController: UIViewController {
     }
     @IBAction func slide(_ sender: Any) {
 
-        //animateSlideView()
-        animateSlideViewWithDamping()
+        animateSlideView()
+        //animateSlideViewWithDamping()
     }
 
     /*
